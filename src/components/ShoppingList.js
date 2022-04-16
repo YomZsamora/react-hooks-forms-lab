@@ -3,12 +3,12 @@ import ItemForm from "./ItemForm";
 import Filter from "./Filter";
 import Item from "./Item";
 
-function ShoppingList({ items }) {
+function ShoppingList({ items, onItemFormSubmit }) {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchItem, setSearchItem] = useState("");
 
-  function handleCategoryChange(event) {
-    setSelectedCategory(event.target.value);
+  function handleCategoryChange(e) {
+    setSelectedCategory(e.target.value);
   }
 
   function searchFilteredItems(e) {
@@ -27,7 +27,7 @@ function ShoppingList({ items }) {
 
   return (
     <div className="ShoppingList">
-      <ItemForm />
+      <ItemForm onItemFormSubmit={onItemFormSubmit} />
       <Filter onCategoryChange={handleCategoryChange} search={searchItem} onSearchChange={searchFilteredItems}  />
       <ul className="Items">
         {filteredSearchItems.map((item) => (
